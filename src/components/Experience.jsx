@@ -24,7 +24,7 @@ import React from "react";
 const experiences = [
   {
     company: "TheIndegenous",
-    iconPath: "/TheIndegenous_Logo.png",
+    iconPath: "TheIndegenous_Logo.png",
     role: "Frontend Developer",
     startDate: new Date("May 01, 2023"),
     endDate: new Date("May 28, 2024"),
@@ -37,7 +37,7 @@ const experiences = [
   },
   {
     company: "Celebal Technologies",
-    iconPath: "/CelebalTechnology_Logo.png",
+    iconPath: "CelebalTechnology_Logo.png",
     role: "Web Developer Intern",
     startDate: new Date("May 27, 2023"),
     endDate: new Date("July 25, 2023"),
@@ -117,7 +117,7 @@ const ExperienceCard = ({ experience }) => {
           </Text>
         </HStack>
         <HStack py={4} alignItems={"center"}>
-          <Avatar src={`./src/assets/${iconPath}`} size={"sm"} />
+          <Avatar src={`/assets/${iconPath}`} size={"sm"} />
           <Stack spacing={1}>
             <Heading size="sm">{company}</Heading>
             <Heading size={"xs"} fontWeight={"medium"}>
