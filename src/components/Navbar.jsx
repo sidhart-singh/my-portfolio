@@ -1,3 +1,4 @@
+import { CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
@@ -19,8 +20,9 @@ import {
   List,
   ListItem,
   useColorMode,
+  Divider,
 } from "@chakra-ui/react";
-import { BiChevronDown, BiSearch, BiSun } from "react-icons/bi";
+import { BiChevronDown, BiCross, BiSearch, BiSun } from "react-icons/bi";
 import { BsMoonStars } from "react-icons/bs";
 
 const navLinks = [
@@ -60,10 +62,10 @@ export default function Navbar() {
       <Flex
         justifyContent={"space-between"}
         alignItems={"center"}
-        w={"70%"}
+        w={"80%"}
         gap={4}
       >
-        <Box w={"10%"}>{""}</Box>
+        <Box flexGrow={{ base: 1, md: 0 }}>{""}</Box>
         <Flex
           // minW={{ base: "", md: "300px" }}
           justifyContent={{ base: "flex-end", md: "center" }}
@@ -97,22 +99,60 @@ export default function Navbar() {
             >
               Menu
             </Button>
-            <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-              <ModalOverlay display={{ base: "flex", md: "none" }} />
+            <Modal
+              motionPreset="slideInBottom"
+              blockScrollOnMount={false}
+              isOpen={isOpen}
+              onClose={onClose}
+              size={"2xl"}
+            >
+              {/* <ModalOverlay /> */}
+              <ModalOverlay
+                bg={useColorModeValue("blackAlpha.100", "blackAlpha.700")}
+                backdropFilter="blur(4px)"
+              />
               <ModalContent
+                bg={useColorModeValue("gray.50", "black.800")}
                 display={{ base: "flex", md: "none" }}
-                borderRadius={"xl"}
-                p={4}
+                borderRadius={"3xl"}
+                mx={6}
+                px={2}
+                py={6}
               >
-                <ModalHeader fontSize={"medium"}>Navigation</ModalHeader>
-                <ModalCloseButton />
+                <ModalHeader>
+                  <Flex justifyContent={"space-between"} alignItems={"center"}>
+                    <Text
+                      fontSize={"sm"}
+                      fontWeight={"medium"}
+                      color={useColorModeValue(
+                        "blackAlpha.700",
+                        "whiteAlpha.700"
+                      )}
+                    >
+                      Navigation
+                    </Text>
+                    <IconButton
+                      onClick={onClose}
+                      icon={
+                        <CloseIcon
+                          color={useColorModeValue(
+                            "blackAlpha.700",
+                            "whiteAlpha.700"
+                          )}
+                        />
+                      }
+                      bg={"transparent"}
+                      size={"xs"}
+                    />
+                  </Flex>
+                </ModalHeader>
                 <ModalBody>
-                  <Text fontWeight="normal" mb="1rem">
-                    You can scroll the content behind the modal
-                  </Text>
-                  <List spacing={2}>
-                    {navLinks.map((link, index) => (
-                      <ListItem key={index}>{link.name}</ListItem>
+                  <List spacing={3}>
+                    {navLinks.map((link, index, { length }) => (
+                      <>
+                        <ListItem key={index}>{link.name}</ListItem>
+                        {index !== length - 1 && <Divider />}
+                      </>
                     ))}
                   </List>
                 </ModalBody>
