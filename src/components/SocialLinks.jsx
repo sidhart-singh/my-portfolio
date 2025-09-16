@@ -20,7 +20,7 @@ const SocialLinks = () => {
         bg={"transparent"}
         as={Link}
         to={links.gmail}
-        icon={<BiLogoGmail size={"md"} />}
+        icon={<BiLogoGmail />}
         boxSize={"24px"}
         color={"gray.600"}
       />
@@ -29,7 +29,7 @@ const SocialLinks = () => {
         bg={"transparent"}
         as={Link}
         to={links.linkedIn}
-        icon={<BsLinkedin size={"sm"} />}
+        icon={<BsLinkedin />}
         boxSize={"20px"}
         color={"gray.600"}
       />
@@ -37,7 +37,7 @@ const SocialLinks = () => {
         bg={"transparent"}
         as={Link}
         to={links.github}
-        icon={<BsGithub size={"md"} />}
+        icon={<BsGithub />}
         boxSize={"20px"}
         color={"gray.600"}
       />
@@ -45,7 +45,7 @@ const SocialLinks = () => {
         bg={"transparent"}
         as={Link}
         to={links.leetcode}
-        icon={<SiLeetcode size={"md"} />}
+        icon={<SiLeetcode />}
         boxSize={"20px"}
         color={"gray.600"}
       />
@@ -53,7 +53,7 @@ const SocialLinks = () => {
         bg={"transparent"}
         as={Link}
         to={links.instagram}
-        icon={<BsInstagram size={"md"} />}
+        icon={<BsInstagram />}
         boxSize={"20px"}
         color={"gray.600"}
       />

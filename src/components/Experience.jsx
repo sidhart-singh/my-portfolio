@@ -23,15 +23,15 @@ import React from "react";
 
 const experiences = [
   {
-    company: "TheIndegenous",
-    iconPath: "TheIndegenous_Logo.png",
-    role: "Frontend Developer",
-    startDate: new Date("May 01, 2023"),
-    endDate: new Date("May 28, 2024"),
-    skills: ["ReactJs", "Javascript"],
+    company: "Ernst & Young GDS",
+    iconPath: "EY_GDS_Logo.png",
+    role: "Associate Software Engineer",
+    startDate: new Date("Nov 04, 2024"),
+    endDate: "Present",
+    skills: ["Java", "Springboot", "NextJs"],
     details: [
-      "Working in a real-world, complex project",
-      "Developing and solving issues and requirements for the project.",
+      "Developed and maintained RESTful APIs using Java Spring Boot for a client onboarding portal, implementing authentication with JWT, optimizing SQL queries, and building reusable services that reduced data retrieval time by 20%.",
+      "Exposure to cloud platforms (AWS/Azure) for deploying and monitoring applications, including working with services like EC2, S3, or Azure App Service.",
     ],
     certificateUrl: "",
   },

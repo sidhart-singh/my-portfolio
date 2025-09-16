@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import { useForm, ValidationError } from "@formspree/react";
 import {
   Button,
   Container,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   Stack,
@@ -11,82 +11,121 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 
 const Contact = () => {
-  const [state, handleSubmit] = useForm("xwkgapll");
-  // if (state.succeeded) {
-  //   return <p>Thanks for joining!</p>;
-  // }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <Container maxW={"6xl"} py={6} px={{ base: 5, md: 8 }}>
-      <Stack spacing={6}>
-        <VStack
-          as="form"
-          w="100%"
-          spacing={6}
-          rounded="lg"
-          boxShadow="lg"
-          p={{ base: 5, sm: 10 }}
-          border={"1px"}
-          borderColor={useColorModeValue("gray.200", "whiteAlpha.200")}
-          bg={useColorModeValue("gray.50", "transparent")}
-        >
-          {/* <form> */}
-          <VStack spacing={4} w="100%">
-            <Stack
-              w="100%"
-              spacing={3}
-              direction={{ base: "column", md: "row" }}
-            >
-              <FormControl id="name">
-                <FormLabel>Name</FormLabel>
-                <Input type="text" placeholder="Your Name" rounded="md" />
-              </FormControl>
-              <FormControl id="email">
-                <FormLabel>Email</FormLabel>
-                <Input type="email" placeholder="test@test.com" rounded="md" />
-              </FormControl>
-            </Stack>
-            <FormControl id="subject">
-              <FormLabel>Subject</FormLabel>
-              <Input
-                type="text"
-                placeholder="Are you available for freelance work?"
-                rounded="md"
-              />
-            </FormControl>
-            <FormControl id="message">
-              <FormLabel>Message</FormLabel>
-              <Textarea
-                size="lg"
-                placeholder="Enter your message"
-                rounded="md"
-              />
-            </FormControl>
-          </VStack>
-          {/* <VStack w={'100%'}> */}
-          <Button
-            type="submit"
-            onClick={handleSubmit}
-            variant={"outline"}
-            color="blue.500"
-            borderColor={"blackAlpha.400"}
-            _hover={{
-              color: "blue.600",
-            }}
-            // _pressed={{
-            //   color: "blackAlpha.800",
-            // }}
-            rounded="md"
-            fontWeight={"medium"}
-            w={{ base: "100%", md: "max-content" }}
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={6}>
+          <VStack
+            as="form"
+            w="100%"
+            spacing={6}
+            rounded="lg"
+            boxShadow="lg"
+            p={{ base: 5, sm: 10 }}
+            border={"1px"}
+            borderColor={useColorModeValue("gray.200", "whiteAlpha.200")}
+            bg={useColorModeValue("gray.50", "transparent")}
           >
-            Send Message
-          </Button>
-          {/* </VStack> */}
-          {/* </form> */}
-        </VStack>
-      </Stack>
+            {/* <form> */}
+            <VStack spacing={4} w="100%">
+              <Stack
+                w="100%"
+                spacing={3}
+                direction={{ base: "column", md: "row" }}
+              >
+                <FormControl id="name" isInvalid={errors.name}>
+                  <FormLabel htmlFor="name">Name</FormLabel>
+                  <Input
+                    type="text"
+                    placeholder="Your Name"
+                    rounded="md"
+                    {...register("name", {
+                      required: "Name is required",
+                      minLength: {
+                        value: 4,
+                        message: "Minimum length should be 4",
+                      },
+                    })}
+                  />
+                </FormControl>
+                <FormErrorMessage>
+                  {errors.name && errors.name.message}
+                </FormErrorMessage>
+                <FormControl id="email" isInvalid={errors.email}>
+                  <FormLabel htmlFor="email">Email</FormLabel>
+                  <Input
+                    type="email"
+                    placeholder="test@test.com"
+                    rounded="md"
+                    {...register("email", {
+                      required: "Email is required",
+                    })}
+                  />
+                </FormControl>
+                <FormErrorMessage>
+                  {errors.email && errors.email.message}
+                </FormErrorMessage>
+              </Stack>
+              <FormControl id="subject">
+                <FormLabel htmlFor="subject">Subject</FormLabel>
+                <Input
+                  type="text"
+                  placeholder="Are you available for freelance work?"
+                  rounded="md"
+                  {...register("subject", {
+                    required: "Subject must not be empty",
+                  })}
+                />
+              </FormControl>
+              <FormErrorMessage>
+                {errors.subject && errors.subject.message}
+              </FormErrorMessage>
+              <FormControl id="message">
+                <FormLabel htmlFor="message">Message</FormLabel>
+                <Textarea
+                  size="lg"
+                  placeholder="Enter your message"
+                  rounded="md"
+                  {...register("message", {
+                    required: "Message must not be empty",
+                  })}
+                />
+              </FormControl>
+              <FormErrorMessage>
+                {errors.subject && errors.subject.message}
+              </FormErrorMessage>
+            </VStack>
+            {/* <VStack w={'100%'}> */}
+            <Button
+              type="submit"
+              isLoading={isSubmitting}
+              disabled={!isValid || isSubmitting}
+              variant={"outline"}
+              colorScheme="blue"
+              rounded="md"
+              fontWeight={"medium"}
+              w={{ base: "100%", md: "max-content" }}
+            >
+              Send Message
+            </Button>
+            {/* </VStack> */}
+            {/* </form> */}
+          </VStack>
+        </Stack>
+      </form>
     </Container>
   );
 };
