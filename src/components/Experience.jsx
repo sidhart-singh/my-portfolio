@@ -27,7 +27,7 @@ const experiences = [
     iconPath: "EY_GDS_Logo.png",
     role: "Associate Software Engineer",
     startDate: new Date("Nov 04, 2024"),
-    endDate: "Present",
+    endDate: new Date(Date.now()),
     skills: ["Java", "Springboot", "NextJs"],
     details: [
       "Developed and maintained RESTful APIs using Java Spring Boot for a client onboarding portal, implementing authentication with JWT, optimizing SQL queries, and building reusable services that reduced data retrieval time by 20%.",
