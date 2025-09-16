@@ -84,6 +84,12 @@ const ExperienceCard = ({ experience }) => {
     certificateUrl,
   } = experience;
 
+  const today = new Date();
+  const isToday =
+    endDate.getDate() === today.getDate() &&
+    endDate.getMonth() === today.getMonth() &&
+    endDate.getFullYear() === today.getFullYear();
+
   return (
     <Card
       borderWidth={"1px"}
@@ -109,11 +115,13 @@ const ExperienceCard = ({ experience }) => {
               year: "numeric",
             })}{" "}
             -{" "}
-            {endDate.toLocaleDateString("en", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}
+            {isToday
+              ? "Present"
+              : endDate.toLocaleDateString("en", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                })}
           </Text>
         </HStack>
         <HStack py={4} alignItems={"center"}>
