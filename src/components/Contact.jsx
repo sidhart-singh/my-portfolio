@@ -29,7 +29,6 @@ const Contact = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={6}>
           <VStack
-            as="form"
             w="100%"
             spacing={6}
             rounded="lg"
@@ -60,10 +59,10 @@ const Contact = () => {
                       },
                     })}
                   />
+                  <FormErrorMessage>
+                    {errors.name && errors.name.message}
+                  </FormErrorMessage>
                 </FormControl>
-                <FormErrorMessage>
-                  {errors.name && errors.name.message}
-                </FormErrorMessage>
                 <FormControl id="email" isInvalid={errors.email}>
                   <FormLabel htmlFor="email">Email</FormLabel>
                   <Input
@@ -74,10 +73,10 @@ const Contact = () => {
                       required: "Email is required",
                     })}
                   />
+                  <FormErrorMessage>
+                    {errors.email && errors.email.message}
+                  </FormErrorMessage>
                 </FormControl>
-                <FormErrorMessage>
-                  {errors.email && errors.email.message}
-                </FormErrorMessage>
               </Stack>
               <FormControl id="subject">
                 <FormLabel htmlFor="subject">Subject</FormLabel>
@@ -89,10 +88,10 @@ const Contact = () => {
                     required: "Subject must not be empty",
                   })}
                 />
+                <FormErrorMessage>
+                  {errors.subject && errors.subject.message}
+                </FormErrorMessage>
               </FormControl>
-              <FormErrorMessage>
-                {errors.subject && errors.subject.message}
-              </FormErrorMessage>
               <FormControl id="message">
                 <FormLabel htmlFor="message">Message</FormLabel>
                 <Textarea
@@ -103,10 +102,10 @@ const Contact = () => {
                     required: "Message must not be empty",
                   })}
                 />
+                <FormErrorMessage>
+                  {errors.subject && errors.subject.message}
+                </FormErrorMessage>
               </FormControl>
-              <FormErrorMessage>
-                {errors.subject && errors.subject.message}
-              </FormErrorMessage>
             </VStack>
             {/* <VStack w={'100%'}> */}
             <Button
