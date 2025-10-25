@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -14,14 +14,34 @@ import {
 import { useForm } from "react-hook-form";
 
 const Contact = () => {
+  const [Loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+
+    try {
+      setLoading(true);
+
+      const res = await fetch("http://localhost:4000/api/v1/reach/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((data) => {
+        console.log("response", data);
+      });
+
+      setLoading(false);
+    } catch (error) {
+      console.log("ERROR MESSAGE - ", error.message);
+      setLoading(false);
+    }
   };
 
   return (
