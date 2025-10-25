@@ -61,9 +61,7 @@ const Experience = () => {
       </Heading>
       <SimpleGrid column={{ base: 1, sm: 2, md: 1 }} spacing={2}>
         {experiences.map((exp, i) => (
-          <>
-            <ExperienceCard key={`${exp.company}_${i}`} experience={exp} />
-          </>
+          <ExperienceCard key={`${exp.company}_${i}`} experience={exp} />
         ))}
       </SimpleGrid>
     </Flex>

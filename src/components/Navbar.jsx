@@ -6,8 +6,6 @@ import {
   Button,
   Text,
   Link,
-  MenuItem,
-  Icon,
   IconButton,
   useDisclosure,
   useColorModeValue,
@@ -15,13 +13,13 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalCloseButton,
   ModalBody,
   List,
   ListItem,
   useColorMode,
   Divider,
 } from "@chakra-ui/react";
+import React from "react";
 import { BiChevronDown, BiCross, BiSearch, BiSun } from "react-icons/bi";
 import { BsMoonStars } from "react-icons/bs";
 
@@ -149,10 +147,10 @@ export default function Navbar() {
                 <ModalBody>
                   <List spacing={3}>
                     {navLinks.map((link, index, { length }) => (
-                      <>
-                        <ListItem key={index}>{link.name}</ListItem>
+                      <React.Fragment key={index}>
+                        <ListItem>{link.name}</ListItem>
                         {index !== length - 1 && <Divider />}
-                      </>
+                      </React.Fragment>
                     ))}
                   </List>
                 </ModalBody>
